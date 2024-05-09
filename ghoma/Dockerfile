@@ -11,5 +11,7 @@ RUN apk add --no-cache \
 COPY index.js package.json package-lock.json ./
 RUN npm ci
 
+EXPOSE 3000 4196
+
 COPY run.sh ./
 RUN chmod +x run.sh
