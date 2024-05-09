@@ -1,5 +1,5 @@
 name: G-Homa Control Server
-version: 1.0.8
+version: 1.0.9
 slug: ghoma
 description: Controlling G-Homa plugs locally
 url: https://github.com/cschmatzler/home-assistant-addons/tree/main/ghoma

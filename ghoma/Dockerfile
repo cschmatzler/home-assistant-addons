@@ -13,5 +13,4 @@ RUN npm ci
 
 EXPOSE 3000 4196
 
-COPY run.sh ./
-RUN chmod +x run.sh
+COPY rootfs /
