@@ -1,10 +1,18 @@
-FROM oven/bun:1.1.7-alpine
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
+ENV LANG C.UTF-8
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /ghoma
 
-ADD index.js package.json bun.lockb .
-RUN bun i
+RUN apk add --no-cache \
+  nodejs \
+  npm
 
-EXPOSE 3000 4196
+COPY index.js package.json package-lock.json .
+RUN npm ci
 
-CMD ["bun", "run" "index.js"]
+COPY run.sh /
+RUN chmod a+x /run.sh
+
+CMD [ "/run.sh" ]
