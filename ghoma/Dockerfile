@@ -9,7 +9,7 @@ RUN apk add --no-cache \
   nodejs \
   npm
 
-COPY index.js package.json package-lock.json .
+COPY index.js package.json package-lock.json ./
 RUN npm ci
 
 COPY run.sh /
