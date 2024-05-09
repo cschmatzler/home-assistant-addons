@@ -1,0 +1,15 @@
+{
+  "name": "ghoma",
+  "module": "index.js",
+  "type": "module",
+  "dependencies": {
+    "express": "4.19.2",
+    "ghoma": "1.1.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
