@@ -4,11 +4,10 @@ slug: ghoma
 description: Controlling G-Homa plugs locally
 url: https://github.com/cschmatzler/home-assistant-addons/tree/main/ghoma
 arch:
-  - armhf
-  - armv7
   - aarch64
   - amd64
+  - armhf
+  - armv7
   - i386
-init: false
 ports:
-  - 4196/tcp:4196
+  4196/tcp: 4196
