@@ -14,7 +14,7 @@ const app = express();
 const router = express.Router();
 const gatewayHttpPort = process.env.GHOMA_GATEWAY_PORT || 3000; // http server listening port
 const controlServerPort = process.env.GHOMA_CONTROL_SERVER_PORT || 4196;   // G-Homa default port
-const basePath = process.env.GHOMA_GATEWAY_BASE_PATH || '/ghoma';   // base path
+const basePath = process.env.GHOMA_GATEWAY_BASE_PATH || '/';   // base path
 
 app.use(express.json()); // use json middleware
 app.use(basePath, router); // add base path to the app
@@ -25,9 +25,9 @@ app.use(basePath, router); // add base path to the app
 /**
  * List all registered plugs.
  */
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
   var plugs = [];
-  ghoma.forEach(function (plug) { plugs.push(plug); });
+  ghoma.forEach(function(plug) { plugs.push(plug); });
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(plugs));
 });
@@ -60,7 +60,7 @@ function switchPlug(req, res) {
 /**
  * Retrieve the current state of a plug by id.
  */
-router.get('/state/:id', function (req, res) {
+router.get('/state/:id', function(req, res) {
   var plug = ghoma.get(req.params.id);
   if (!plug) {
     res.status(404)
@@ -75,7 +75,7 @@ router.get('/state/:id', function (req, res) {
 /**
  * Retrieve the current info of a plug by id.
  */
-router.get('/info/:id', function (req, res) {
+router.get('/info/:id', function(req, res) {
   var plug = ghoma.get(req.params.id);
   if (!plug) {
     res.status(404)
@@ -87,7 +87,7 @@ router.get('/info/:id', function (req, res) {
 });
 
 // Called when new plug is registered
-ghoma.onNew = function (plug) {
+ghoma.onNew = function(plug) {
   console.log(`New plug registered. Address -> ${plug.remoteAddress}, ID -> ${plug.id}`);
 }
 
@@ -100,6 +100,6 @@ ghoma.onStatusChange = function(plug) {
 ghoma.startServer(controlServerPort);
 
 // Start the express http server listening
-app.listen(gatewayHttpPort, function () {
+app.listen(gatewayHttpPort, function() {
   console.log(`ghoma-http-gateway is listening on port ${gatewayHttpPort}, base path ${basePath}`);
 });
